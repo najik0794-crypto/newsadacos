@@ -1,0 +1,256 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    
+    color: #333;
+}
+.hato{
+    width: 100%;
+    background-color: #fc0;
+    height: 60px;
+}
+.upot{
+    margin: 0 auto;
+    max-width: 1340px;
+    
+    height: 60px;
+}
+.upot img{
+    height: 60px;
+    
+}
+.mb{
+    display: none;
+}
+.pc{
+    display: block;
+}
+
+.pp1{
+    font-size: 29px;
+    font-family: "Arvo", serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 60px;
+
+
+}
+
+.pp11{
+    font-size: 20px;
+    font-family: "Arvo", serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 60px;
+
+
+}
+.pp2{
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+    margin-bottom: 30px;
+}
+
+
+
+.pput{
+    font-size: 14px;
+    font-weight: 600;
+    color: #444444;
+}
+.inpo{
+    display: flex;
+    align-items: center;
+}
+
+ input{
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 50px;
+    text-indent: 20px;
+    width: 400px;
+    border: 1px solid #949494;
+    box-shadow: none;
+    outline: 1px solid transparent;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.inpo1{
+    margin-bottom: 25px;
+}
+
+.pp2{
+    font-size: 13px;
+}
+
+.mona{
+    flex: 1 0 auto;
+    margin: 0 auto;
+    max-width: 920px;
+}
+.indr{
+    max-width: 400px;
+}
+.indr img{
+    width: 100%;
+    
+}
+
+button{
+    font-feature-settings: "lnum" 1;
+    background: #fc0;
+    border: 2px solid rgba(0, 0, 0, .902);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Milo ADAC W04 Bold, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .4px;
+    max-width: 400px;
+    min-height: 55px;
+    outline: none;
+    padding: 10px 20px 7px;
+    text-decoration: none;
+
+}
+.butn{
+    width: 400px;
+    display: flex;
+    justify-content: end;
+}
+
+.boto{
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    height: 70px;
+    align-self: end;
+}
+.boto2{
+    margin-top: 80px;
+}
+.bwoto{
+    margin: 0 auto;
+    max-width: 1340px;
+    
+    height: 70px;
+}
+.bwoto img{
+    height: 70px;
+    
+}
+
+.prebot{
+    max-width: 870px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.prebot img{
+    width: 100%;
+    
+}
+
+
+.btn{
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+
+/*  */
+.body{
+    display: grid;
+    align-items: space-between;
+    height: 100vh;
+}
+
+.group2{
+    margin-top: 5px;
+}
+.g4{
+    margin-top: 30px;
+}
+.btn2{
+    margin-top: 15px;
+}
+/*  */
+
+
+
+@media screen and (max-width: 668px) {
+    body {
+        font-size: 14px;
+    }
+
+    .mb{
+        display: block;
+        width: 100%;
+    }
+    .pc{
+        display: none;
+    }
+
+      input{
+        border-radius: 5px;
+        box-sizing: border-box;
+        height: 50px;
+        text-indent: 20px;
+        width: 100%;
+        border: 1px solid #949494;
+        box-shadow: none;
+        outline: 1px solid transparent;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .indr{
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .mona{
+        flex: 1 0 auto;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 25px;
+    }
+    .butn{
+        width: 80%;
+        display: flex;
+        justify-content: end;
+    }
+    button{
+        
+        width:100%;
+        min-height: 55px;
+        outline: none;
+        padding: 10px 20px 7px;
+        text-decoration: none;
+    
+    }
+    .prebot img{
+        width: 100%;
+        margin: 0 -15px;
+    }
+
+    .bwoto{
+        margin: 0 auto;
+        max-width: 1340px;
+        
+        height: 100%;
+    }
+    .bwoto img{
+        height: auto;
+        
+    }
+}
+
+
+

